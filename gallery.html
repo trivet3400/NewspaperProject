@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <header>
+    <nav>
+        <div class="hamburger">☰</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="article.html">Article</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+    </nav>
+</header>
+    <main class="photo-gallery">
+        <div class="gallery-controls">
+            <button id="prev">Previous</button>
+            <button id="next">Next</button>
+        </div>
+        <div class="photo"><img src="images/scientist.jpg" alt="Scientists studying quantum mechanics"></div>
+        <div class="photo"><img src="images/bunnies.jpg" alt= "A bunny and its human companion"></div>
+        <div class="photo"><img src="images/cats.jpg" alt="An adorable kitten"></div>
+    </main>
+
+<script>document.addEventListener("DOMContentLoaded", function() {
+    const prevBtn = document.getElementById("prev");
+    const nextBtn = document.getElementById("next");
+    const photos = document.querySelectorAll(".photo");
+    let currentIndex = 0;
+
+    // Show the initial photo
+    showPhoto(currentIndex);
+
+    // Event listener for the previous button
+    prevBtn.addEventListener("click", function() {
+        currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+        showPhoto(currentIndex);
+    });
+
+    // Event listener for the next button
+    nextBtn.addEventListener("click", function() {
+        currentIndex = (currentIndex + 1) % photos.length;
+        showPhoto(currentIndex);
+    });
+
+    // Function to show the current photo
+    function showPhoto(index) {
+        photos.forEach(function(photo, idx) {
+            if (idx === index) {
+                photo.style.display = "block";
+            } else {
+                photo.style.display = "none";
+            }
+        });
+    }
+});
+</script>
+
+<script>
+    document.querySelector('.hamburger').addEventListener('click', function() {
+        document.querySelector('nav ul').classList.toggle('active');
+    });
+</script>
+</body>
+</html>
